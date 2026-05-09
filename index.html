@@ -9,385 +9,131 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      background: #F8F6F2;
-      color: #1a1a1a;
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
+    body { font-family: 'DM Sans', sans-serif; font-weight: 300; background: #F8F6F2; color: #1a1a1a; font-size: 14px; line-height: 1.7; }
     a { text-decoration: none; color: inherit; }
+    .page { display: none; min-height: 100vh; }
+    .page.active { display: block; }
 
-    /* NAV */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 48px;
-      background: rgba(248,246,242,0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 0.5px solid rgba(0,0,0,0.1);
-    }
-
-    .logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
-      font-weight: 300;
-      letter-spacing: 0.08em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #555;
-      transition: color 0.2s;
-    }
-
+    nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 18px 48px; background: rgba(248,246,242,0.95); backdrop-filter: blur(8px); border-bottom: 0.5px solid rgba(0,0,0,0.1); }
+    .logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; letter-spacing: 0.08em; cursor: pointer; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #555; transition: color 0.2s; cursor: pointer; }
     .nav-links a:hover { color: #1a1a1a; }
 
-    .lang-btn {
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      color: #999;
-      cursor: pointer;
-      padding: 4px 10px;
-      border: 0.5px solid #ccc;
-      border-radius: 2px;
-      background: transparent;
-      font-family: 'DM Sans', sans-serif;
-    }
+    .hero { padding: 100px 48px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; border-bottom: 0.5px solid rgba(0,0,0,0.1); }
+    .hero-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #999; margin-bottom: 24px; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 300; line-height: 1.05; }
+    .hero-title em { font-style: italic; color: #666; }
+    .hero-desc { font-size: 14px; color: #555; line-height: 1.8; margin-bottom: 36px; max-width: 340px; }
+    .hero-meta { display: flex; gap: 32px; }
+    .meta-item { border-top: 0.5px solid rgba(0,0,0,0.15); padding-top: 12px; }
+    .meta-num { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; display: block; }
+    .meta-label { font-size: 11px; letter-spacing: 0.08em; color: #999; text-transform: uppercase; }
 
-    /* HERO */
-    .hero {
-      padding: 100px 48px 80px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: end;
-      border-bottom: 0.5px solid rgba(0,0,0,0.1);
-    }
+    .section { padding: 72px 48px; border-bottom: 0.5px solid rgba(0,0,0,0.1); }
+    .section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 48px; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; }
+    .section-num { font-size: 11px; letter-spacing: 0.12em; color: #bbb; }
 
-    .hero-label {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #999;
-      margin-bottom: 24px;
-    }
+    .cat-tabs { display: flex; gap: 0; margin-bottom: 40px; border-bottom: 0.5px solid rgba(0,0,0,0.1); }
+    .cat-tab { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #999; padding: 10px 24px 10px 0; cursor: pointer; border-bottom: 1.5px solid transparent; margin-bottom: -0.5px; transition: all 0.2s; }
+    .cat-tab.active { color: #1a1a1a; border-bottom-color: #1a1a1a; }
 
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 64px;
-      font-weight: 300;
-      line-height: 1.05;
-      letter-spacing: -0.01em;
-    }
-
-    .hero-title em {
-      font-style: italic;
-      color: #666;
-    }
-
-    .hero-desc {
-      font-size: 14px;
-      color: #555;
-      line-height: 1.8;
-      margin-bottom: 36px;
-      max-width: 340px;
-    }
-
-    .hero-meta {
-      display: flex;
-      gap: 32px;
-    }
-
-    .meta-item {
-      border-top: 0.5px solid rgba(0,0,0,0.15);
-      padding-top: 12px;
-    }
-
-    .meta-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 28px;
-      font-weight: 300;
-      display: block;
-    }
-
-    .meta-label {
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      color: #999;
-      text-transform: uppercase;
-    }
-
-    /* SECTIONS */
-    .section {
-      padding: 72px 48px;
-      border-bottom: 0.5px solid rgba(0,0,0,0.1);
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 48px;
-    }
-
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 32px;
-      font-weight: 300;
-    }
-
-    .section-num {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      color: #bbb;
-    }
-
-    /* PROJECTS */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: rgba(0,0,0,0.1);
-      border: 0.5px solid rgba(0,0,0,0.1);
-    }
-
-    .project-card {
-      background: #F8F6F2;
-      padding: 36px 32px;
-      cursor: pointer;
-      transition: background 0.2s;
-      position: relative;
-    }
-
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(0,0,0,0.08); border: 0.5px solid rgba(0,0,0,0.08); }
+    .project-card { background: #F8F6F2; padding: 36px 32px; cursor: pointer; transition: background 0.2s; position: relative; min-height: 220px; }
     .project-card:hover { background: #F0EDE7; }
+    .project-tag { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #999; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .project-tag::before { content: ''; display: inline-block; width: 16px; height: 0.5px; background: #bbb; }
+    .project-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; margin-bottom: 10px; line-height: 1.3; }
+    .project-desc { font-size: 13px; color: #777; line-height: 1.7; margin-bottom: 24px; }
+    .project-year { font-size: 11px; letter-spacing: 0.1em; color: #bbb; }
+    .project-arrow { position: absolute; bottom: 32px; right: 32px; font-size: 18px; color: #ccc; transition: transform 0.2s, color 0.2s; }
+    .project-card:hover .project-arrow { transform: translate(3px, -3px); color: #888; }
+    .project-empty { background: #F0EDE7; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; min-height: 220px; }
+    .project-empty p:first-child { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #bbb; font-style: italic; }
+    .project-empty p:last-child { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #ccc; }
 
-    .project-tag {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #999;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .project-list { border: 0.5px solid rgba(0,0,0,0.08); }
+    .project-list-item { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 0.5px solid rgba(0,0,0,0.08); transition: background 0.2s; }
+    .project-list-item:last-child { border-bottom: none; }
+    .project-list-item:hover { background: #F0EDE7; }
+    .list-item-left { display: flex; align-items: center; gap: 20px; }
+    .list-num { font-size: 11px; letter-spacing: 0.1em; color: #bbb; min-width: 24px; }
+    .list-name { font-size: 14px; color: #1a1a1a; }
+    .list-right { display: flex; align-items: center; gap: 24px; }
+    .list-tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; }
+    .list-year { font-size: 11px; color: #bbb; }
 
-    .project-tag::before {
-      content: '';
-      display: inline-block;
-      width: 16px;
-      height: 0.5px;
-      background: #bbb;
-    }
-
-    .project-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
-      font-weight: 300;
-      margin-bottom: 10px;
-      line-height: 1.3;
-    }
-
-    .project-desc {
-      font-size: 13px;
-      color: #777;
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
-
-    .project-year {
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      color: #bbb;
-    }
-
-    .project-arrow {
-      position: absolute;
-      bottom: 32px;
-      right: 32px;
-      font-size: 18px;
-      color: #ccc;
-      transition: transform 0.2s, color 0.2s;
-    }
-
-    .project-card:hover .project-arrow {
-      transform: translate(3px, -3px);
-      color: #888;
-    }
-
-    .project-empty {
-      background: #F0EDE7;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 12px;
-      min-height: 200px;
-    }
-
-    .project-empty p:first-child {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
-      font-weight: 300;
-      color: #bbb;
-      font-style: italic;
-    }
-
-    .project-empty p:last-child {
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #ccc;
-    }
-
-    /* ABOUT */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .about-text {
-      font-size: 15px;
-      color: #555;
-      line-height: 1.9;
-      margin-bottom: 16px;
-    }
-
-    .about-text-en {
-      font-size: 13px;
-      color: #999;
-      line-height: 1.9;
-    }
-
-    .skills-label {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #bbb;
-      margin-bottom: 16px;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border: 0.5px solid rgba(0,0,0,0.1);
-      margin-top: 40px;
-    }
-
-    .skill-item {
-      padding: 20px 24px;
-      border-bottom: 0.5px solid rgba(0,0,0,0.1);
-      border-right: 0.5px solid rgba(0,0,0,0.1);
-    }
-
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .about-text { font-size: 15px; color: #555; line-height: 1.9; margin-bottom: 16px; }
+    .about-text-en { font-size: 13px; color: #999; line-height: 1.9; }
+    .skills-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #bbb; margin-bottom: 16px; margin-top: 40px; }
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; border: 0.5px solid rgba(0,0,0,0.1); }
+    .skill-item { padding: 20px 24px; border-bottom: 0.5px solid rgba(0,0,0,0.1); border-right: 0.5px solid rgba(0,0,0,0.1); }
     .skill-item:nth-child(2n) { border-right: none; }
     .skill-item:nth-last-child(-n+2) { border-bottom: none; }
+    .skill-name { font-size: 12px; letter-spacing: 0.06em; color: #444; margin-bottom: 4px; }
+    .skill-type { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; }
 
-    .skill-name {
-      font-size: 12px;
-      letter-spacing: 0.06em;
-      color: #444;
-      margin-bottom: 4px;
-    }
+    .contact { padding: 80px 48px; text-align: center; }
+    .contact-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #bbb; margin-bottom: 20px; }
+    .contact-title { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; font-style: italic; margin-bottom: 36px; line-height: 1.1; }
+    .contact-links { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+    .contact-link { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #555; padding: 10px 24px; border: 0.5px solid rgba(0,0,0,0.2); border-radius: 2px; cursor: pointer; background: transparent; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+    .contact-link:hover { background: #1a1a1a; color: #F8F6F2; border-color: #1a1a1a; }
 
-    .skill-type {
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #bbb;
-    }
+    footer { padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid rgba(0,0,0,0.1); }
+    .footer-copy { font-size: 11px; color: #bbb; letter-spacing: 0.06em; }
+    .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: #999; }
 
-    /* CONTACT */
-    .contact {
-      padding: 80px 48px;
-      text-align: center;
-    }
+    /* DETAIL PAGE */
+    .detail-hero { padding: 60px 48px 0; border-bottom: 0.5px solid rgba(0,0,0,0.1); }
+    .back-btn { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #999; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 48px; transition: color 0.2s; }
+    .back-btn:hover { color: #1a1a1a; }
+    .detail-meta { display: flex; gap: 48px; margin-bottom: 48px; padding-bottom: 48px; border-bottom: 0.5px solid rgba(0,0,0,0.1); flex-wrap: wrap; }
+    .detail-meta-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #bbb; margin-bottom: 6px; }
+    .detail-meta-value { font-size: 13px; color: #444; }
+    .detail-title-area { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; padding-bottom: 60px; }
+    .detail-title { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; line-height: 1.1; }
+    .detail-title em { font-style: italic; color: #666; }
+    .detail-intro { font-size: 15px; color: #555; line-height: 1.9; }
 
-    .contact-label {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #bbb;
-      margin-bottom: 20px;
-    }
+    .detail-section { padding: 60px 48px; border-bottom: 0.5px solid rgba(0,0,0,0.1); }
+    .detail-section-title { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #bbb; margin-bottom: 32px; }
 
-    .contact-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 52px;
-      font-weight: 300;
-      font-style: italic;
-      margin-bottom: 36px;
-      line-height: 1.1;
-    }
+    .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(0,0,0,0.08); margin-bottom: 1px; }
+    .img-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: rgba(0,0,0,0.08); margin-bottom: 1px; }
 
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
+    .img-placeholder { background: #EAE7E0; aspect-ratio: 4/3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; position: relative; overflow: hidden; }
+    .img-placeholder img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; }
+    .img-placeholder-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; }
+    .img-placeholder-icon { font-size: 20px; color: #ccc; }
 
-    .contact-link {
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #555;
-      padding: 10px 24px;
-      border: 0.5px solid rgba(0,0,0,0.2);
-      border-radius: 2px;
-      cursor: pointer;
-      background: transparent;
-      font-family: 'DM Sans', sans-serif;
-      transition: all 0.2s;
-    }
+    .img-wide { background: #EAE7E0; aspect-ratio: 16/7; display: flex; align-items: center; justify-content: center; margin-bottom: 1px; position: relative; overflow: hidden; }
+    .img-wide img { width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0; }
 
-    .contact-link:hover {
-      background: #1a1a1a;
-      color: #F8F6F2;
-      border-color: #1a1a1a;
-    }
+    .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .concept-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #bbb; margin-bottom: 16px; }
+    .concept-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; margin-bottom: 20px; line-height: 1.2; }
+    .concept-text { font-size: 14px; color: #555; line-height: 1.9; }
+    .concept-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+    .concept-tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #777; padding: 6px 14px; border: 0.5px solid rgba(0,0,0,0.15); border-radius: 2px; }
 
-    /* FOOTER */
-    footer {
-      padding: 24px 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 0.5px solid rgba(0,0,0,0.1);
-    }
+    .role-list { list-style: none; margin-top: 8px; }
+    .role-list li { font-size: 13px; color: #555; padding: 10px 0; border-bottom: 0.5px solid rgba(0,0,0,0.08); display: flex; align-items: center; gap: 12px; }
+    .role-list li::before { content: ''; display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: #bbb; flex-shrink: 0; }
 
-    .footer-copy {
-      font-size: 11px;
-      color: #bbb;
-      letter-spacing: 0.06em;
-    }
+    .space-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    .space-table th { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; text-align: left; padding: 10px 0; border-bottom: 0.5px solid rgba(0,0,0,0.1); font-weight: 300; }
+    .space-table td { font-size: 13px; color: #555; padding: 12px 0; border-bottom: 0.5px solid rgba(0,0,0,0.06); }
+    .space-table td:first-child { color: #1a1a1a; }
 
-    .footer-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 13px;
-      color: #999;
-    }
+    .project-nav { padding: 48px; display: flex; justify-content: space-between; align-items: center; }
+    .proj-nav-btn { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #999; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
+    .proj-nav-btn:hover { color: #1a1a1a; }
 
-    /* RESPONSIVE */
+    .sub-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; margin: 32px 0 20px; }
+
     @media (max-width: 768px) {
       nav { padding: 16px 24px; }
       .nav-links { display: none; }
@@ -399,19 +145,28 @@
       .contact { padding: 60px 24px; }
       .contact-title { font-size: 36px; }
       footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+      .detail-hero { padding: 32px 24px 0; }
+      .detail-title-area { grid-template-columns: 1fr; gap: 32px; }
+      .detail-title { font-size: 36px; }
+      .detail-section { padding: 40px 24px; }
+      .img-grid-2 { grid-template-columns: 1fr; }
+      .img-grid-3 { grid-template-columns: 1fr; }
+      .concept-grid { grid-template-columns: 1fr; gap: 40px; }
+      .project-nav { padding: 32px 24px; }
     }
   </style>
 </head>
 <body>
 
+<!-- ===== MAIN PAGE ===== -->
+<div id="page-main" class="page active">
   <nav>
-    <span class="logo">Choi Inae · 최인애</span>
+    <span class="logo" onclick="showPage('main')">Choi Inae · 최인애</span>
     <ul class="nav-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a onclick="scrollToSection('work')">Work</a></li>
+      <li><a onclick="scrollToSection('about')">About</a></li>
+      <li><a onclick="scrollToSection('contact')">Contact</a></li>
     </ul>
-    <button class="lang-btn">KR / EN</button>
   </nav>
 
   <section class="hero">
@@ -420,23 +175,11 @@
       <h1 class="hero-title">Space<br>that holds<br><em>meaning</em></h1>
     </div>
     <div>
-      <p class="hero-desc">
-        공간의 정체성과 시간을 잇는 디자인.<br>
-        기획부터 시공까지, 전시와 주거를 넘나드는 통합적 접근.
-      </p>
+      <p class="hero-desc">공간의 정체성과 시간을 잇는 디자인.<br>기획부터 시공까지, 전시와 주거를 넘나드는 통합적 접근.</p>
       <div class="hero-meta">
-        <div class="meta-item">
-          <span class="meta-num">6+</span>
-          <span class="meta-label">Years</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-num">12+</span>
-          <span class="meta-label">Projects</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-num">M.A.</span>
-          <span class="meta-label">Space Design</span>
-        </div>
+        <div class="meta-item"><span class="meta-num">6+</span><span class="meta-label">Years</span></div>
+        <div class="meta-item"><span class="meta-num">14+</span><span class="meta-label">Projects</span></div>
+        <div class="meta-item"><span class="meta-num">M.A.</span><span class="meta-label">Space Design</span></div>
       </div>
     </div>
   </section>
@@ -446,81 +189,111 @@
       <h2 class="section-title">Selected Work</h2>
       <span class="section-num">01</span>
     </div>
-    <div class="projects-grid">
-      <div class="project-card">
-        <p class="project-tag">Exhibition · Renewal</p>
-        <h3 class="project-name">인천학생과학관<br>바이오 전시 리뉴얼</h3>
-        <p class="project-desc">과학 개념을 공간 언어로 번역한 바이오 테마 전시 리뉴얼. 교육성과 몰입감의 균형.</p>
-        <span class="project-year">2025</span>
-        <span class="project-arrow">↗</span>
+
+    <div class="cat-tabs">
+      <div class="cat-tab active" onclick="switchTab(event,'commercial')">실무 프로젝트</div>
+      <div class="cat-tab" onclick="switchTab(event,'academic')">학교 프로젝트</div>
+    </div>
+
+    <div id="tab-commercial">
+      <p class="sub-label">Featured — 공간형</p>
+      <div class="projects-grid" style="margin-bottom:1px;">
+        <div class="project-card" onclick="showPage('project-jemulpo')">
+          <p class="project-tag">Educational Space · AI Platform</p>
+          <h3 class="project-name">제물포<br>AI 융합교육센터</h3>
+          <p class="project-desc">인천 상상플랫폼 3층, 1,749㎡. AI 미래교육 플랫폼 AI.LAND 공간 기획·설계.</p>
+          <span class="project-year">2024 – 2025</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <div class="project-card">
+          <p class="project-tag">Educational Space · University</p>
+          <h3 class="project-name">부산교육대학교<br>미래교육 공간</h3>
+          <p class="project-desc">미래형 교육 환경을 위한 공간 기획 및 설계.</p>
+          <span class="project-year">2025</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <div class="project-card">
+          <p class="project-tag">Educational Space · High School</p>
+          <h3 class="project-name">순창고등학교<br>미래교실</h3>
+          <p class="project-desc">공간 혁신을 통한 학습 경험 전환.</p>
+          <span class="project-year">2026</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <div class="project-empty"><p>More coming</p><p>In progress</p></div>
       </div>
-      <div class="project-card">
-        <p class="project-tag">Architecture · Library</p>
-        <h3 class="project-name">계명대 동산도서관<br>리뉴얼</h3>
-        <p class="project-desc">역사적 맥락을 지키면서도 현대적 기능을 더한 도서관 공간 재생 프로젝트.</p>
-        <span class="project-year">2025</span>
-        <span class="project-arrow">↗</span>
+
+      <p class="sub-label">Featured — 전시형</p>
+      <div class="projects-grid" style="margin-bottom:40px;">
+        <div class="project-card">
+          <p class="project-tag">Exhibition · Brand</p>
+          <h3 class="project-name">대원미디어그룹<br>AGF 2025</h3>
+          <p class="project-desc">브랜드 정체성을 공간으로 번역한 전시 부스 기획·설계.</p>
+          <span class="project-year">2025</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <div class="project-card">
+          <p class="project-tag">Exhibition · Trade Show</p>
+          <h3 class="project-name">서울카페쇼<br>2025</h3>
+          <p class="project-desc">전시 공간 연출 및 브랜드 경험 설계.</p>
+          <span class="project-year">2025</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <div class="project-card">
+          <p class="project-tag">Exhibition · Education</p>
+          <h3 class="project-name">여수엑스포<br>글로컬 미래교실</h3>
+          <p class="project-desc">미래교육을 테마로 한 체험형 전시 공간.</p>
+          <span class="project-year">2025</span>
+          <span class="project-arrow">↗</span>
+        </div>
+        <div class="project-empty"><p>More coming</p><p>In progress</p></div>
       </div>
-      <div class="project-card">
-        <p class="project-tag">Planning · Mobile UX</p>
-        <h3 class="project-name">SSMSU 스마트 셀<br>모바일 플랫폼</h3>
-        <p class="project-desc">공간 경험과 디지털 플랫폼을 연결하는 스마트 셀 서비스 기획.</p>
-        <span class="project-year">2025</span>
-        <span class="project-arrow">↗</span>
+
+      <p class="sub-label">All Projects</p>
+      <div class="project-list">
+        <div class="project-list-item"><div class="list-item-left"><span class="list-num">01</span><span class="list-name">제물포 AI 융합교육센터</span></div><div class="list-right"><span class="list-tag">공간형</span><span class="list-year">2024</span></div></div>
+        <div class="project-list-item"><div class="list-item-left"><span class="list-num">02</span><span class="list-name">부산교육대학교</span></div><div class="list-right"><span class="list-tag">공간형</span><span class="list-year">2025</span></div></div>
+        <div class="project-list-item"><div class="list-item-left"><span class="list-num">03</span><span class="list-name">순창고등학교</span></div><div class="list-right"><span class="list-tag">공간형</span><span class="list-year">2026</span></div></div>
+        <div class="project-list-item"><div class="list-item-left"><span class="list-num">04</span><span class="list-name">여수엑스포 글로컬 미래교실</span></div><div class="list-right"><span class="list-tag">전시형</span><span class="list-year">2025</span></div></div>
+        <div class="project-list-item"><div class="list-item-left"><span class="list-num">05</span><span class="list-name">충북 늘봄형 미래교육센터 사전기획</span></div><div class="list-right"><span class="list-tag">기획</span><span class="list-year">2025</span></div></div>
+        <div class="project-list-item"><div class="list-item-left"><span class="list-num">06</span><span class="list-name">광주 2024에듀테크 미래교육 박람회</span></div><div class="list-right"><span class="list-tag">전시형</span><span class="list-year">2025</span></div></div>
+        <div class="project-list-item"><div class="list-item-left"><span class="list-num">07</span><span class="list-name">사용자 참여 설계 키트</span></div><div class="list-right"><span class="list-tag">기획</span><span class="list-year">2026</span></div></div>
+        <div class="project-list-item"><div class="list-item-left"><span class="list-num">08</span><span class="list-name">충남 전통시장 활성화</span></div><div class="list-right"><span class="list-tag">공간형</span><span class="list-year">2025</span></div></div>
+        <div class="project-list-item"><div class="list-item-left"><span class="list-num">09</span><span class="list-name">인천학생과학관 바이오 전시 리뉴얼</span></div><div class="list-right"><span class="list-tag">전시형</span><span class="list-year">2025</span></div></div>
+        <div class="project-list-item"><div class="list-item-left"><span class="list-num">10</span><span class="list-name">Seoul ADEX 2025 통합홍보관</span></div><div class="list-right"><span class="list-tag">전시형</span><span class="list-year">2025</span></div></div>
+        <div class="project-list-item"><div class="list-item-left"><span class="list-num">11</span><span class="list-name">대원미디어그룹 AGF 2025</span></div><div class="list-right"><span class="list-tag">전시형</span><span class="list-year">2025</span></div></div>
+        <div class="project-list-item"><div class="list-item-left"><span class="list-num">12</span><span class="list-name">서울카페쇼 2025</span></div><div class="list-right"><span class="list-tag">전시형</span><span class="list-year">2025</span></div></div>
+        <div class="project-list-item"><div class="list-item-left"><span class="list-num">13</span><span class="list-name">AI교육 페스티벌 (고우넷)</span></div><div class="list-right"><span class="list-tag">전시형</span><span class="list-year">2025</span></div></div>
+        <div class="project-list-item"><div class="list-item-left"><span class="list-num">14</span><span class="list-name">ZERON (스마트공중화장실)</span></div><div class="list-right"><span class="list-tag">공간형</span><span class="list-year">2026</span></div></div>
       </div>
-      <div class="project-empty">
-        <p>More coming soon</p>
-        <p>In progress</p>
+    </div>
+
+    <div id="tab-academic" style="display:none;">
+      <div class="projects-grid">
+        <div class="project-card"><p class="project-tag">AI Future Classroom</p><h3 class="project-name">AI 미래교실<br>프로젝트 01</h3><p class="project-desc">준비 중입니다.</p><span class="project-year">Coming soon</span><span class="project-arrow">↗</span></div>
+        <div class="project-card"><p class="project-tag">AI Future Classroom</p><h3 class="project-name">AI 미래교실<br>프로젝트 02</h3><p class="project-desc">준비 중입니다.</p><span class="project-year">Coming soon</span><span class="project-arrow">↗</span></div>
+        <div class="project-card"><p class="project-tag">AI Future Classroom</p><h3 class="project-name">AI 미래교실<br>프로젝트 03</h3><p class="project-desc">준비 중입니다.</p><span class="project-year">Coming soon</span><span class="project-arrow">↗</span></div>
+        <div class="project-empty"><p>More coming</p><p>In progress</p></div>
       </div>
     </div>
   </section>
 
   <section class="section" id="about">
-    <div class="section-header">
-      <h2 class="section-title">About</h2>
-      <span class="section-num">02</span>
-    </div>
+    <div class="section-header"><h2 class="section-title">About</h2><span class="section-num">02</span></div>
     <div class="about-grid">
       <div>
-        <p class="about-text">
-          공간 디자인 석사 및 실내건축사 자격증을 보유한 전시·공간 디자이너입니다.
-          단순히 아름다운 공간을 만드는 것이 아닌, 장소가 가진 고유한 정체성과 시간의 층위를 읽어내는 작업을 합니다.
-        </p>
-        <p class="about-text">
-          기획 단계부터 시공까지 통합적으로 참여하며, 전시 공간과 주거 공간 모두에서 신구의 조화를 추구합니다.
-        </p>
-        <p class="about-text-en">
-          I'm a Seoul-based space and exhibition designer with an M.A. in Space Design.
-          My work bridges concept and construction, always anchored in a space's inherent identity.
-        </p>
+        <p class="about-text">공간 디자인 석사 및 실내건축사 자격증을 보유한 전시·공간 디자이너입니다. 단순히 아름다운 공간을 만드는 것이 아닌, 장소가 가진 고유한 정체성과 시간의 층위를 읽어내는 작업을 합니다.</p>
+        <p class="about-text">기획 단계부터 시공까지 통합적으로 참여하며, 전시 공간과 주거 공간 모두에서 신구의 조화를 추구합니다.</p>
+        <p class="about-text-en">I'm a Seoul-based space and exhibition designer with an M.A. in Space Design. My work bridges concept and construction, always anchored in a space's inherent identity.</p>
       </div>
       <div>
-        <p class="skills-label">Areas of Practice</p>
+        <p class="skills-label" style="margin-top:0;">Areas of Practice</p>
         <div class="skills-grid">
-          <div class="skill-item">
-            <p class="skill-name">Exhibition Design</p>
-            <p class="skill-type">전시 디자인</p>
-          </div>
-          <div class="skill-item">
-            <p class="skill-name">Space Planning</p>
-            <p class="skill-type">공간 기획</p>
-          </div>
-          <div class="skill-item">
-            <p class="skill-name">Residential Design</p>
-            <p class="skill-type">주거 공간</p>
-          </div>
-          <div class="skill-item">
-            <p class="skill-name">Renovation</p>
-            <p class="skill-type">리뉴얼 · 재생</p>
-          </div>
-          <div class="skill-item">
-            <p class="skill-name">Concept Development</p>
-            <p class="skill-type">개념 설계</p>
-          </div>
-          <div class="skill-item">
-            <p class="skill-name">Construction Mgmt</p>
-            <p class="skill-type">시공 관리</p>
-          </div>
+          <div class="skill-item"><p class="skill-name">Exhibition Design</p><p class="skill-type">전시 디자인</p></div>
+          <div class="skill-item"><p class="skill-name">Space Planning</p><p class="skill-type">공간 기획</p></div>
+          <div class="skill-item"><p class="skill-name">Residential Design</p><p class="skill-type">주거 공간</p></div>
+          <div class="skill-item"><p class="skill-name">Renovation</p><p class="skill-type">리뉴얼 · 재생</p></div>
+          <div class="skill-item"><p class="skill-name">Concept Development</p><p class="skill-type">개념 설계</p></div>
+          <div class="skill-item"><p class="skill-name">Construction Mgmt</p><p class="skill-type">시공 관리</p></div>
         </div>
       </div>
     </div>
@@ -532,7 +305,6 @@
     <div class="contact-links">
       <a href="mailto:your@email.com" class="contact-link">Email</a>
       <a href="https://instagram.com/yourhandle" target="_blank" class="contact-link">Instagram</a>
-      <a href="https://behance.net/yourhandle" target="_blank" class="contact-link">Behance</a>
     </div>
   </section>
 
@@ -540,6 +312,137 @@
     <span class="footer-copy">© 2026 Choi Inae. All rights reserved.</span>
     <span class="footer-name">최인애 / Space Designer</span>
   </footer>
+</div>
 
+<!-- ===== PROJECT: 제물포 AI 융합교육센터 ===== -->
+<div id="page-project-jemulpo" class="page">
+  <nav>
+    <span class="logo" onclick="showPage('main')">Choi Inae · 최인애</span>
+    <ul class="nav-links"><li><a onclick="showPage('main')">← All Projects</a></li></ul>
+  </nav>
+
+  <div class="detail-hero">
+    <div class="back-btn" onclick="showPage('main')">← All Projects</div>
+    <div class="detail-meta">
+      <div><p class="detail-meta-label">Category</p><p class="detail-meta-value">Educational Space · AI Platform</p></div>
+      <div><p class="detail-meta-label">Location</p><p class="detail-meta-value">인천 상상플랫폼 3층</p></div>
+      <div><p class="detail-meta-label">Area</p><p class="detail-meta-value">1,749㎡ (530평)</p></div>
+      <div><p class="detail-meta-label">Year</p><p class="detail-meta-value">2024 – 2025</p></div>
+      <div><p class="detail-meta-label">Client</p><p class="detail-meta-value">인천광역시교육청</p></div>
+    </div>
+    <div class="detail-title-area">
+      <div>
+        <h1 class="detail-title">제물포<br>AI 융합교육센터<br><em>AI.LAND</em></h1>
+      </div>
+      <div>
+        <p class="detail-intro">인천 내항 8부두 곡물창고를 재생한 약 530평 규모의 AI 미래교육 플랫폼. L.LAND(러닝존)와 T.LAND(테크존)로 구성된 온·오프라인 통합 교육 생태계를 기획하고 설계했습니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="detail-section-title">Completed Space</p>
+    <div class="img-wide">
+      <img src="images/AI-00051.jpg" alt="T.LAND 전경" />
+      <span style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#bbb;position:absolute;">이미지 업로드 후 표시됩니다</span>
+    </div>
+    <div class="img-grid-2">
+      <div class="img-placeholder"><img src="images/AI-00078.jpg" alt="" /><span class="img-placeholder-icon">⬜</span><span class="img-placeholder-label">T.LAND</span></div>
+      <div class="img-placeholder"><img src="images/AI-00092.jpg" alt="" /><span class="img-placeholder-icon">⬜</span><span class="img-placeholder-label">트랙존</span></div>
+    </div>
+    <div class="img-grid-3">
+      <div class="img-placeholder"><img src="images/AI-00125.jpg" alt="" /><span class="img-placeholder-icon">⬜</span><span class="img-placeholder-label">클래스룸</span></div>
+      <div class="img-placeholder"><img src="images/AI-00166.jpg" alt="" /><span class="img-placeholder-icon">⬜</span><span class="img-placeholder-label">L.LAND 로비</span></div>
+      <div class="img-placeholder"><img src="images/AI-00171.jpg" alt="" /><span class="img-placeholder-icon">⬜</span><span class="img-placeholder-label">L.LAND</span></div>
+    </div>
+    <div class="img-grid-2">
+      <div class="img-placeholder"><img src="images/AI-00177.jpg" alt="" /><span class="img-placeholder-icon">⬜</span><span class="img-placeholder-label">복도</span></div>
+      <div class="img-placeholder"><img src="images/AI-00179.jpg" alt="" /><span class="img-placeholder-icon">⬜</span><span class="img-placeholder-label">강의실</span></div>
+    </div>
+    <div class="img-grid-2">
+      <div class="img-placeholder"><img src="images/AI-00207.jpg" alt="" /><span class="img-placeholder-icon">⬜</span><span class="img-placeholder-label">디테일</span></div>
+      <div class="img-placeholder"><img src="images/AI-00218.jpg" alt="" /><span class="img-placeholder-icon">⬜</span><span class="img-placeholder-label">디테일</span></div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <div class="concept-grid">
+      <div>
+        <p class="concept-label">Concept</p>
+        <h2 class="concept-title">AI 미래교육의<br>최적화된 유토피아</h2>
+        <p class="concept-text">역사적 산업 공간인 곡물창고를 재생하여 AI 시대 미래교육 플랫폼으로 전환. 온·오프라인을 넘나드는 학습 생태계를 공간 언어로 구현했습니다.</p>
+        <p class="concept-text" style="margin-top:16px;">L.LAND는 'Digital Wave' 컨셉의 곡선과 블루 계열로, T.LAND는 'Smart City Grid' 컨셉의 청록과 다크 톤으로 두 존의 정체성을 명확히 구분했습니다.</p>
+        <div class="concept-tags">
+          <span class="concept-tag">공간 재생</span>
+          <span class="concept-tag">AI 교육</span>
+          <span class="concept-tag">온오프라인 통합</span>
+          <span class="concept-tag">미래교육 생태계</span>
+        </div>
+      </div>
+      <div>
+        <p class="concept-label">My Role</p>
+        <ul class="role-list">
+          <li>공간 기획 (기본 개념 설계 ~ 공간 구성 계획)</li>
+          <li>디자인 설계 (L.LAND · T.LAND 전체)</li>
+          <li>그래픽 전체 감리</li>
+          <li>BI · 색채 · 사인 시스템 기획</li>
+          <li>설계 보고자료 제작</li>
+        </ul>
+        <p class="concept-label" style="margin-top:32px;">Space Program</p>
+        <table class="space-table">
+          <tr><th>Zone</th><th>주요 공간</th><th>면적</th></tr>
+          <tr><td>L.LAND</td><td>강의실 · 모둠실 · 허브존 · 이벤트존</td><td>731㎡</td></tr>
+          <tr><td>T.LAND</td><td>대형강의실 · 메이킹실 · XR스튜디오 · 트랙존</td><td>875㎡</td></tr>
+          <tr><td>공용</td><td>로비 · 복도 · 운영사무실</td><td>143㎡</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="detail-section-title">Design Process — 투시도 · 도면</p>
+    <div class="img-grid-2">
+      <div class="img-placeholder"><span class="img-placeholder-icon">⬜</span><span class="img-placeholder-label">투시도 추가 예정</span></div>
+      <div class="img-placeholder"><span class="img-placeholder-icon">⬜</span><span class="img-placeholder-label">투시도 추가 예정</span></div>
+    </div>
+    <div style="background:#EAE7E0;aspect-ratio:16/5;display:flex;align-items:center;justify-content:center;gap:12px;margin-top:1px;">
+      <span style="font-size:20px;color:#ccc;">⬜</span>
+      <span style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#bbb;">평면도 추가 예정</span>
+    </div>
+  </div>
+
+  <div class="project-nav">
+    <div class="proj-nav-btn" onclick="showPage('main')">← All Projects</div>
+    <div class="proj-nav-btn">부산교육대학교 →</div>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2026 Choi Inae. All rights reserved.</span>
+    <span class="footer-name">최인애 / Space Designer</span>
+  </footer>
+</div>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + id);
+    if (target) { target.classList.add('active'); window.scrollTo(0, 0); }
+  }
+
+  function scrollToSection(id) {
+    showPage('main');
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  }
+
+  function switchTab(e, tab) {
+    document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById('tab-commercial').style.display = tab === 'commercial' ? 'block' : 'none';
+    document.getElementById('tab-academic').style.display = tab === 'academic' ? 'block' : 'none';
+  }
+</script>
 </body>
 </html>

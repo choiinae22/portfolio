@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Pretendard:wght@300;400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
   <style>
+    :root { --olive: #6B7049; --olive-light: #F2F2EA; --olive-mid: #9A9E78; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Pretendard', -apple-system, sans-serif; font-weight: 300; background: #F8F6F2; color: #1a1a1a; font-size: 14px; line-height: 1.7; }
     a { text-decoration: none; color: inherit; }
@@ -24,32 +25,32 @@
     .hero { padding: 100px 48px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; border-bottom: 0.5px solid rgba(0,0,0,0.1); }
     .hero-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #999; margin-bottom: 24px; }
     .hero-title { font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 300; line-height: 1.05; }
-    .hero-title em { font-style: italic; color: #666; }
+    .hero-title em { font-style: italic; color: var(--olive); }
     .hero-desc { font-size: 14px; color: #555; line-height: 1.8; margin-bottom: 36px; max-width: 340px; }
     .hero-meta { display: flex; gap: 32px; }
-    .meta-item { border-top: 0.5px solid rgba(0,0,0,0.15); padding-top: 12px; }
+    .meta-item { border-top: 1px solid var(--olive); padding-top: 12px; }
     .meta-num { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; display: block; }
     .meta-label { font-size: 11px; letter-spacing: 0.08em; color: #999; text-transform: uppercase; }
 
     .section { padding: 72px 48px; border-bottom: 0.5px solid rgba(0,0,0,0.1); }
     .section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 48px; }
-    .section-title { font-family: 'Pretendard', sans-serif; font-size: 28px; font-weight: 300; }
-    .section-num { font-size: 11px; letter-spacing: 0.12em; color: #bbb; }
+    .section-title { font-family: 'Pretendard', sans-serif; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+    .section-num { font-size: 11px; letter-spacing: 0.12em; color: var(--olive); }
 
     .cat-tabs { display: flex; gap: 0; margin-bottom: 40px; border-bottom: 0.5px solid rgba(0,0,0,0.1); }
     .cat-tab { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #999; padding: 10px 24px 10px 0; cursor: pointer; border-bottom: 1.5px solid transparent; margin-bottom: -0.5px; transition: all 0.2s; }
-    .cat-tab.active { color: #1a1a1a; border-bottom-color: #1a1a1a; }
+    .cat-tab.active { color: var(--olive); border-bottom-color: var(--olive); font-weight: 600; }
 
     .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(0,0,0,0.08); border: 0.5px solid rgba(0,0,0,0.08); }
     .project-card { background: #F8F6F2; padding: 36px 32px; cursor: pointer; transition: background 0.2s; position: relative; min-height: 220px; }
-    .project-card:hover { background: #F0EDE7; }
+    .project-card:hover { background: var(--olive-light); }
     .project-tag { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #999; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-    .project-tag::before { content: ''; display: inline-block; width: 16px; height: 0.5px; background: #bbb; }
-    .project-name { font-family: 'Pretendard', sans-serif; font-size: 20px; font-weight: 300; margin-bottom: 10px; line-height: 1.4; }
+    .project-tag::before { content: ''; display: inline-block; width: 16px; height: 0.5px; background: var(--olive); }
+    .project-name { font-family: 'Pretendard', sans-serif; font-size: 18px; font-weight: 500; margin-bottom: 10px; line-height: 1.4; letter-spacing: -0.02em; }
     .project-desc { font-size: 13px; color: #777; line-height: 1.7; margin-bottom: 24px; }
     .project-year { font-size: 11px; letter-spacing: 0.1em; color: #bbb; }
     .project-arrow { position: absolute; bottom: 32px; right: 32px; font-size: 18px; color: #ccc; transition: transform 0.2s, color 0.2s; }
-    .project-card:hover .project-arrow { transform: translate(3px, -3px); color: #888; }
+    .project-card:hover .project-arrow { transform: translate(3px, -3px); color: var(--olive); }
     .project-empty { background: #F0EDE7; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; min-height: 220px; }
     .project-empty p:first-child { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #bbb; font-style: italic; }
     .project-empty p:last-child { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #ccc; }
@@ -57,10 +58,10 @@
     .project-list { border: 0.5px solid rgba(0,0,0,0.08); }
     .project-list-item { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 0.5px solid rgba(0,0,0,0.08); transition: background 0.2s; }
     .project-list-item:last-child { border-bottom: none; }
-    .project-list-item:hover { background: #F0EDE7; }
+    .project-list-item:hover { background: var(--olive-light); }
     .list-item-left { display: flex; align-items: center; gap: 20px; }
     .list-num { font-size: 11px; letter-spacing: 0.1em; color: #bbb; min-width: 24px; }
-    .list-name { font-size: 14px; color: #1a1a1a; }
+    .list-name { font-size: 14px; color: #1a1a1a; font-weight: 400; }
     .list-right { display: flex; align-items: center; gap: 24px; }
     .list-tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; }
     .list-year { font-size: 11px; color: #bbb; }
@@ -78,10 +79,10 @@
 
     .contact { padding: 80px 48px; text-align: center; }
     .contact-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #bbb; margin-bottom: 20px; }
-    .contact-title { font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 300; font-style: normal; margin-bottom: 36px; line-height: 1.2; }
+    .contact-title { font-family: 'Pretendard', sans-serif; font-size: 44px; font-weight: 500; margin-bottom: 36px; line-height: 1.3; letter-spacing: -0.02em; }
     .contact-links { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
     .contact-link { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #555; padding: 10px 24px; border: 0.5px solid rgba(0,0,0,0.2); border-radius: 2px; cursor: pointer; background: transparent; font-family: 'Pretendard', sans-serif; transition: all 0.2s; }
-    .contact-link:hover { background: #1a1a1a; color: #F8F6F2; border-color: #1a1a1a; }
+    .contact-link:hover { background: var(--olive); color: #F8F6F2; border-color: var(--olive); }
 
     footer { padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid rgba(0,0,0,0.1); }
     .footer-copy { font-size: 11px; color: #bbb; letter-spacing: 0.06em; }
@@ -90,14 +91,14 @@
     /* DETAIL PAGE */
     .detail-hero { padding: 60px 48px 0; border-bottom: 0.5px solid rgba(0,0,0,0.1); }
     .back-btn { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #999; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 48px; transition: color 0.2s; }
-    .back-btn:hover { color: #1a1a1a; }
+    .back-btn:hover { color: var(--olive); }
     .detail-meta { display: flex; gap: 48px; margin-bottom: 48px; padding-bottom: 48px; border-bottom: 0.5px solid rgba(0,0,0,0.1); flex-wrap: wrap; }
     .detail-meta-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #bbb; margin-bottom: 6px; }
     .detail-meta-value { font-size: 13px; color: #444; }
     .detail-title-area { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; padding-bottom: 60px; }
-    .detail-title { font-family: 'Pretendard', sans-serif; font-size: 48px; font-weight: 300; line-height: 1.2; }
+    .detail-title { font-family: 'Pretendard', sans-serif; font-size: 44px; font-weight: 600; line-height: 1.2; letter-spacing: -0.03em; }
     .detail-title em { font-style: italic; color: #666; }
-    .detail-intro { font-size: 15px; color: #555; line-height: 1.9; }
+    .detail-intro { font-size: 16px; color: #444; line-height: 1.9; font-weight: 300; }
 
     .detail-section { padding: 60px 48px; border-bottom: 0.5px solid rgba(0,0,0,0.1); }
     .detail-section-title { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #bbb; margin-bottom: 32px; }
@@ -115,14 +116,14 @@
 
     .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
     .concept-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #bbb; margin-bottom: 16px; }
-    .concept-title { font-family: 'Pretendard', sans-serif; font-size: 28px; font-weight: 300; margin-bottom: 20px; line-height: 1.4; }
+    .concept-title { font-family: 'Pretendard', sans-serif; font-size: 26px; font-weight: 600; margin-bottom: 20px; line-height: 1.4; letter-spacing: -0.02em; }
     .concept-text { font-size: 14px; color: #555; line-height: 1.9; }
     .concept-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
-    .concept-tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #777; padding: 6px 14px; border: 0.5px solid rgba(0,0,0,0.15); border-radius: 2px; }
+    .concept-tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--olive); padding: 6px 14px; border: 0.5px solid var(--olive-mid); border-radius: 2px; }
 
     .role-list { list-style: none; margin-top: 8px; }
     .role-list li { font-size: 13px; color: #555; padding: 10px 0; border-bottom: 0.5px solid rgba(0,0,0,0.08); display: flex; align-items: center; gap: 12px; }
-    .role-list li::before { content: ''; display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: #bbb; flex-shrink: 0; }
+    .role-list li::before { content: ''; display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: var(--olive); flex-shrink: 0; }
 
     .space-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
     .space-table th { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; text-align: left; padding: 10px 0; border-bottom: 0.5px solid rgba(0,0,0,0.1); font-weight: 300; }
@@ -131,9 +132,9 @@
 
     .project-nav { padding: 48px; display: flex; justify-content: space-between; align-items: center; }
     .proj-nav-btn { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #999; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
-    .proj-nav-btn:hover { color: #1a1a1a; }
+    .proj-nav-btn:hover { color: var(--olive); }
 
-    .sub-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; margin: 32px 0 20px; }
+    .sub-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--olive); margin: 32px 0 20px; }
 
     @media (max-width: 768px) {
       nav { padding: 16px 24px; }
@@ -178,9 +179,8 @@
     <div>
       <p class="hero-desc">공간의 정체성과 시간을 잇는 디자인.<br>기획부터 시공까지, 전시와 주거를 넘나드는 통합적 접근.</p>
       <div class="hero-meta">
-        <div class="meta-item"><span class="meta-num">6+</span><span class="meta-label">Years</span></div>
-        <div class="meta-item"><span class="meta-num">14+</span><span class="meta-label">Projects</span></div>
         <div class="meta-item"><span class="meta-num">M.A.</span><span class="meta-label">Space Design</span></div>
+        <div class="meta-item"><span class="meta-num">실내건축기사</span><span class="meta-label">License</span></div>
       </div>
     </div>
   </section>
@@ -282,9 +282,37 @@
     <div class="section-header"><h2 class="section-title">About</h2><span class="section-num">02</span></div>
     <div class="about-grid">
       <div>
-        <p class="about-text">공간 디자인 석사 및 실내건축사 자격증을 보유한 전시·공간 디자이너입니다. 단순히 아름다운 공간을 만드는 것이 아닌, 장소가 가진 고유한 정체성과 시간의 층위를 읽어내는 작업을 합니다.</p>
+        <p class="about-text">공간 디자인 석사 및 실내건축기사 자격증을 보유한 전시·공간 디자이너입니다. 단순히 아름다운 공간을 만드는 것이 아닌, 장소가 가진 고유한 정체성과 시간의 층위를 읽어내는 작업을 합니다.</p>
         <p class="about-text">기획 단계부터 시공까지 통합적으로 참여하며, 전시 공간과 주거 공간 모두에서 신구의 조화를 추구합니다.</p>
         <p class="about-text-en">I'm a Seoul-based space and exhibition designer with an M.A. in Space Design. My work bridges concept and construction, always anchored in a space's inherent identity.</p>
+
+        <div style="margin-top:40px;">
+          <p style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#bbb;margin-bottom:20px;font-weight:400;">Career</p>
+          <div style="border-left:0.5px solid rgba(0,0,0,0.12);padding-left:24px;display:flex;flex-direction:column;gap:0;">
+
+            <div style="position:relative;padding-bottom:28px;">
+              <div style="position:absolute;left:-28px;top:5px;width:7px;height:7px;border-radius:50%;background:var(--olive);"></div>
+              <p style="font-size:11px;letter-spacing:0.08em;color:var(--olive-mid);margin-bottom:4px;font-weight:400;">2026 – 현재</p>
+              <p style="font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:2px;">프리랜서</p>
+              <p style="font-size:13px;color:#777;font-weight:300;">그래픽 디자인 · 현수막 · 브랜드 시각물 제작</p>
+            </div>
+
+            <div style="position:relative;padding-bottom:28px;">
+              <div style="position:absolute;left:-28px;top:5px;width:7px;height:7px;border-radius:50%;background:#ccc;"></div>
+              <p style="font-size:11px;letter-spacing:0.08em;color:#bbb;margin-bottom:4px;font-weight:400;">2024 – 2026</p>
+              <p style="font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:2px;">토비스랩 (Tobis Lab)</p>
+              <p style="font-size:13px;color:#777;font-weight:300;">미래교육 공간 기획 · 설계 · 그래픽 감리</p>
+            </div>
+
+            <div style="position:relative;">
+              <div style="position:absolute;left:-28px;top:5px;width:7px;height:7px;border-radius:50%;background:#ccc;"></div>
+              <p style="font-size:11px;letter-spacing:0.08em;color:#bbb;margin-bottom:4px;font-weight:400;">– 2024</p>
+              <p style="font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:2px;">공간 디자인 석사 졸업</p>
+              <p style="font-size:13px;color:#777;font-weight:300;">실내건축기사 자격 취득</p>
+            </div>
+
+          </div>
+        </div>
       </div>
       <div>
         <p class="skills-label" style="margin-top:0;">Areas of Practice</p>
@@ -295,6 +323,8 @@
           <div class="skill-item"><p class="skill-name">Renovation</p><p class="skill-type">리뉴얼 · 재생</p></div>
           <div class="skill-item"><p class="skill-name">Concept Development</p><p class="skill-type">개념 설계</p></div>
           <div class="skill-item"><p class="skill-name">Construction Mgmt</p><p class="skill-type">시공 관리</p></div>
+          <div class="skill-item"><p class="skill-name">Photoshop 1급</p><p class="skill-type">그래픽 자격증</p></div>
+          <div class="skill-item"><p class="skill-name">Illustrator 1급</p><p class="skill-type">그래픽 자격증</p></div>
         </div>
       </div>
     </div>

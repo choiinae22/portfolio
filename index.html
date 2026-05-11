@@ -17,19 +17,19 @@
     .page.active { display: block; }
 
     nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 18px 48px; background: rgba(248,246,242,0.95); backdrop-filter: blur(8px); border-bottom: 0.5px solid rgba(0,0,0,0.1); }
-    .logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; letter-spacing: 0.08em; cursor: pointer; }
+    .logo { font-family: 'Pretendard', sans-serif; font-size: 18px; font-weight: 400; letter-spacing: 0.08em; cursor: pointer; }
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #555; transition: color 0.2s; cursor: pointer; }
     .nav-links a:hover { color: #1a1a1a; }
 
     .hero { padding: 100px 48px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; border-bottom: 0.5px solid rgba(0,0,0,0.1); }
     .hero-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #999; margin-bottom: 24px; }
-    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 300; line-height: 1.05; }
+    .hero-title { font-family: 'Pretendard', sans-serif; font-size: 64px; font-weight: 700; line-height: 1.05; color: var(--olive); }
     .hero-title em { font-style: italic; color: var(--olive); }
     .hero-desc { font-size: 14px; color: #555; line-height: 1.8; margin-bottom: 36px; max-width: 340px; }
     .hero-meta { display: flex; gap: 32px; }
     .meta-item { border-top: 1px solid var(--olive); padding-top: 12px; }
-    .meta-num { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; display: block; }
+    .meta-num { font-family: 'Pretendard', sans-serif; font-size: 28px; font-weight: 300; display: block; }
     .meta-label { font-size: 11px; letter-spacing: 0.08em; color: #999; text-transform: uppercase; }
 
     .section { padding: 72px 48px; border-bottom: 0.5px solid rgba(0,0,0,0.1); }
@@ -52,7 +52,7 @@
     .project-arrow { position: absolute; bottom: 32px; right: 32px; font-size: 18px; color: #ccc; transition: transform 0.2s, color 0.2s; }
     .project-card:hover .project-arrow { transform: translate(3px, -3px); color: var(--olive); }
     .project-empty { background: #F0EDE7; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; min-height: 220px; }
-    .project-empty p:first-child { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #bbb; font-style: italic; }
+    .project-empty p:first-child {  font-size: 18px; color: #bbb; font-style: italic; }
     .project-empty p:last-child { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #ccc; }
 
     .project-list { border: 0.5px solid rgba(0,0,0,0.08); }
@@ -175,11 +175,11 @@
 
   <section class="hero">
     <div>
-      <p class="hero-label">Space & Exhibition Designer · Seoul</p>
-      <h1 class="hero-title">Space<br>that holds<br><em>meaning</em></h1>
+      <p class="hero-label">Designer</p>
+      <h1 class="hero-title">All I've<br>Been</h1>
     </div>
     <div>
-      <p class="hero-desc">공간의 정체성과 시간을 잇는 디자인.<br>기획부터 시공까지, 전시와 주거를 넘나드는 통합적 접근.</p>
+      <p class="hero-desc">공간의 정체성과 시간을 잇는 디자인.<br>장소가 가진 고유한 결을 읽고, 그것을 공간의 언어로 번역합니다.</p>
       <div class="hero-meta">
         <div class="meta-item"><span class="meta-num">M.A.</span><span class="meta-label">Space Design</span></div>
         <div class="meta-item"><span class="meta-num">실내건축기사</span><span class="meta-label">License</span></div>
@@ -284,9 +284,9 @@
     <div class="section-header"><h2 class="section-title">About</h2><span class="section-num">02</span></div>
     <div class="about-grid">
       <div>
-        <p class="about-text">공간 디자인 석사 및 실내건축기사 자격증을 보유한 전시·공간 디자이너입니다. 단순히 아름다운 공간을 만드는 것이 아닌, 장소가 가진 고유한 정체성과 시간의 층위를 읽어내는 작업을 합니다.</p>
-        <p class="about-text">기획 단계부터 시공까지 통합적으로 참여하며, 전시 공간과 주거 공간 모두에서 신구의 조화를 추구합니다.</p>
-        <p class="about-text-en">I'm a Seoul-based space and exhibition designer with an M.A. in Space Design. My work bridges concept and construction, always anchored in a space's inherent identity.</p>
+        <p class="about-text">공간 디자인 석사 및 실내건축기사 자격증을 보유한 공간 디자이너입니다. 단순히 아름다운 공간을 만드는 것이 아닌, 장소가 가진 고유한 정체성과 시간의 층위를 읽어내는 작업을 합니다.</p>
+        <p class="about-text">기획 단계부터 시공까지 통합적으로 참여하며, 공간이 담아야 할 이야기를 함께 설계합니다.</p>
+        <p class="about-text-en">I'm a Seoul-based space designer with an M.A. in Space Design. My work bridges concept and construction, always anchored in a space's inherent identity.</p>
 
         <div style="margin-top:40px;">
           <p style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#bbb;margin-bottom:20px;font-weight:400;">Career</p>
@@ -306,7 +306,7 @@
             <div style="position:relative;">
               <div style="position:absolute;left:-28px;top:5px;width:7px;height:7px;border-radius:50%;background:#ccc;"></div>
               <p style="font-size:11px;letter-spacing:0.08em;color:#bbb;margin-bottom:4px;font-weight:400;">– 2024</p>
-              <p style="font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:2px;">공간 디자인 석사 졸업</p>
+              <p style="font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:2px;">국민대학교 공간디자인 석사 졸업</p>
               <p style="font-size:13px;color:#777;font-weight:300;">실내건축기사 자격 취득</p>
             </div>
           </div>
@@ -315,14 +315,19 @@
       <div>
         <p class="skills-label" style="margin-top:0;">Areas of Practice</p>
         <div class="skills-grid">
-          <div class="skill-item"><p class="skill-name">Exhibition Design</p><p class="skill-type">전시 디자인</p></div>
+          <div class="skill-item"><p class="skill-name">Space Design</p><p class="skill-type">공간 디자인</p></div>
           <div class="skill-item"><p class="skill-name">Space Planning</p><p class="skill-type">공간 기획</p></div>
-          <div class="skill-item"><p class="skill-name">Residential Design</p><p class="skill-type">주거 공간</p></div>
           <div class="skill-item"><p class="skill-name">Renovation</p><p class="skill-type">리뉴얼 · 재생</p></div>
           <div class="skill-item"><p class="skill-name">Concept Development</p><p class="skill-type">개념 설계</p></div>
-          <div class="skill-item"><p class="skill-name">Construction Mgmt</p><p class="skill-type">시공 관리</p></div>
+          <div class="skill-item" style="border-bottom:none;"><p class="skill-name">Construction Mgmt</p><p class="skill-type">시공 관리</p></div>
+          <div class="skill-item" style="border-bottom:none;border-right:none;"></div>
+        </div>
+        <p class="skills-label" style="margin-top:32px;">Certificates</p>
+        <div class="skills-grid">
+          <div class="skill-item"><p class="skill-name">실내건축기사</p><p class="skill-type">국가기술자격</p></div>
           <div class="skill-item"><p class="skill-name">Photoshop 1급</p><p class="skill-type">그래픽 자격증</p></div>
-          <div class="skill-item"><p class="skill-name">Illustrator 1급</p><p class="skill-type">그래픽 자격증</p></div>
+          <div class="skill-item" style="border-bottom:none;"><p class="skill-name">Illustrator 1급</p><p class="skill-type">그래픽 자격증</p></div>
+          <div class="skill-item" style="border-bottom:none;border-right:none;"><p class="skill-name">2종 보통 운전면허</p><p class="skill-type">운전면허</p></div>
         </div>
       </div>
     </div>
@@ -339,7 +344,7 @@
 
   <footer>
     <span class="footer-copy">© 2026 Choi Inae. All rights reserved.</span>
-    <span class="footer-name">최인애 / Space Designer</span>
+    <span class="footer-name">최인애 / Designer</span>
   </footer>
 </div>
 
@@ -484,7 +489,7 @@
 
   <footer>
     <span class="footer-copy">© 2026 Choi Inae. All rights reserved.</span>
-    <span class="footer-name">최인애 / Space Designer</span>
+    <span class="footer-name">최인애 / Designer</span>
   </footer>
 </div>
 

@@ -3,262 +3,353 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Choi Inae · 최인애</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+  <title>안착</title>
   <style>
+    /* ── 로컬 폰트 ── */
+    @font-face {
+      font-family: 'SCDream';
+      src: url('SCDream5.otf') format('opentype');
+      font-weight: 500;
+      unicode-range: U+0020-007E, U+00A0-00FF, U+2000-206F, U+2E00-2E7F;
+    }
+    @font-face {
+      font-family: 'SCDream';
+      src: url('SCDream8.otf') format('opentype');
+      font-weight: 800;
+      unicode-range: U+0020-007E, U+00A0-00FF, U+2000-206F, U+2E00-2E7F;
+    }
+    @font-face {
+      font-family: 'PD';
+      src: url('Pretendard-Medium.otf') format('opentype');
+      font-weight: 500;
+    }
+    @font-face {
+      font-family: 'PD';
+      src: url('Pretendard-SemiBold.otf') format('opentype');
+      font-weight: 600;
+    }
+
+    /* ── 변수 ── */
     :root {
       --olive: #6B7049;
-      --bg: #F7F5F1;
-      --bg2: #EEEAE3;
-      --text: #111;
-      --muted: #888;
-      --line: rgba(0,0,0,0.09);
+      --olive-light: rgba(107,112,73,0.1);
+      --bg: #F5F5F5;
+      --card: #FFFFFF;
+      --text: #1A1918;
+      --muted: #8A8A85;
+      --line: rgba(0,0,0,0.07);
+      --shadow-sm: 0 1px 6px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 24px rgba(0,0,0,0.09);
     }
+
     * { margin:0; padding:0; box-sizing:border-box; }
+
     body {
-      font-family: 'Pretendard', -apple-system, sans-serif;
-      font-weight: 300; background: var(--bg);
-      color: var(--text); font-size: 14px; line-height: 1.7;
+      font-family: 'SCDream', 'PD', -apple-system, sans-serif;
+      font-weight: 500;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
     a { text-decoration: none; color: inherit; }
     .page { display: none; min-height: 100vh; }
     .page.active { display: block; }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
       position: sticky; top: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
-      padding: 0 48px; height: 60px;
-      background: rgba(247,245,241,0.92);
-      backdrop-filter: blur(16px);
-      border-bottom: 0.5px solid var(--line);
+      padding: 0 56px; height: 64px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line);
     }
     .logo {
-      font-family: 'Inter', sans-serif;
-      font-size: 13px; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+      font-family: 'SCDream', sans-serif;
+      font-size: 15px; font-weight: 500;
+      letter-spacing: 0.06em; cursor: pointer;
+      color: var(--text);
     }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
     .nav-links a {
-      font-family: 'Inter', sans-serif;
-      font-size: 11px; letter-spacing: 0.08em;
+      font-family: 'SCDream', sans-serif;
+      font-size: 11px; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--muted);
-      transition: color 0.2s; cursor: pointer;
+      transition: color 0.2s; cursor: pointer; font-weight: 500;
     }
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover { color: var(--olive); }
 
-    /* HERO */
+    /* ── HERO ── */
     .hero {
       position: relative;
-      padding: 0 48px;
-      min-height: 92vh;
+      padding: 0 56px;
+      min-height: 94vh;
       display: flex; flex-direction: column; justify-content: flex-end;
       overflow: hidden;
-      border-bottom: 0.5px solid var(--line);
+      background: var(--bg);
     }
     .hero-watermark {
       position: absolute;
       top: 50%; left: 50%;
-      transform: translate(-50%, -48%);
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(140px, 26vw, 340px);
-      font-weight: 900;
-      color: transparent;
-      -webkit-text-stroke: 1.5px rgba(107,112,73,0.12);
+      transform: translate(-50%, -46%);
+      font-family: 'SCDream', sans-serif;
+      font-size: clamp(160px, 28vw, 360px);
+      font-weight: 500;
+      color: rgba(255,255,255,0.72);
+      -webkit-text-stroke: none;
       white-space: nowrap;
       letter-spacing: -0.06em;
       pointer-events: none; user-select: none; line-height: 1;
     }
     .hero-eyebrow {
-      position: absolute; top: 44px; left: 48px;
-      font-family: 'Inter', sans-serif;
-      font-size: 11px; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--muted); font-weight: 400;
+      position: absolute; top: 48px; left: 56px;
+      font-family: 'SCDream', sans-serif;
+      font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--muted); font-weight: 500;
     }
     .hero-year {
-      position: absolute; top: 44px; right: 48px;
-      font-family: 'Inter', sans-serif;
-      font-size: 11px; color: var(--muted); font-weight: 400;
+      position: absolute; top: 48px; right: 56px;
+      font-family: 'SCDream', sans-serif;
+      font-size: 10px; color: var(--muted); font-weight: 500;
     }
     .hero-body {
       position: relative; z-index: 2;
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 48px; align-items: end; padding-bottom: 80px;
+      gap: 48px; align-items: end; padding-bottom: 96px;
     }
     .hero-title {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(72px, 12vw, 156px);
+      font-family: 'SCDream', sans-serif;
+      font-size: clamp(72px, 11vw, 148px);
       font-weight: 800; line-height: 0.9;
-      letter-spacing: -0.05em; color: var(--olive);
+      letter-spacing: -0.05em; color: var(--text);
     }
-    .hero-right { display: flex; flex-direction: column; gap: 32px; }
-    .hero-desc { font-size: 15px; color: #555; line-height: 1.85; max-width: 340px; font-weight: 300; }
+    .hero-right { display: flex; flex-direction: column; gap: 36px; }
+    .hero-desc {
+      font-family: 'PD', sans-serif;
+      font-size: 15px; color: #666; line-height: 1.9;
+      max-width: 320px; font-weight: 500;
+    }
     .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
     .hero-tag {
-      font-family: 'Inter', sans-serif;
+      font-family: 'SCDream', sans-serif;
       font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
       color: var(--olive); padding: 7px 16px;
-      border: 0.5px solid rgba(107,112,73,0.4);
+      border: 1px solid rgba(107,112,73,0.3);
       border-radius: 100px; font-weight: 500;
+      background: var(--olive-light);
+    }
+    .hero-divider {
+      position: absolute; bottom: 0; left: 56px; right: 56px;
+      height: 1px; background: var(--line);
     }
 
-    /* SECTION */
-    .section { padding: 80px 48px; border-bottom: 0.5px solid var(--line); }
-    .section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 52px; }
+    /* ── SECTION ── */
+    .section { padding: 96px 56px; border-bottom: 1px solid var(--line); }
+    .section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 56px; }
     .section-title {
-      font-family: 'Inter', sans-serif;
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+      font-family: 'SCDream', sans-serif;
+      font-size: 10px; font-weight: 800;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
     }
-    .section-num { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--olive); font-weight: 500; }
+    .section-num { font-family: 'SCDream', sans-serif; font-size: 11px; color: var(--olive); font-weight: 500; }
 
-    /* TABS */
-    .cat-tabs { display: flex; margin-bottom: 44px; border-bottom: 0.5px solid var(--line); }
+    /* ── TABS ── */
+    .cat-tabs { display: flex; margin-bottom: 48px; border-bottom: 1px solid var(--line); }
     .cat-tab {
-      font-family: 'Inter', sans-serif;
-      font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--muted); padding: 10px 24px 10px 0; cursor: pointer;
-      border-bottom: 1.5px solid transparent; margin-bottom: -0.5px; transition: all 0.2s;
+      font-family: 'SCDream', sans-serif;
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); padding: 10px 28px 10px 0; cursor: pointer;
+      border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.2s;
+      font-weight: 500;
     }
-    .cat-tab.active { color: var(--olive); border-bottom-color: var(--olive); font-weight: 600; }
+    .cat-tab.active { color: var(--olive); border-bottom-color: var(--olive); font-weight: 800; }
     .sub-label {
-      font-family: 'Inter', sans-serif;
-      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--olive); margin: 36px 0 20px; font-weight: 600;
+      font-family: 'SCDream', sans-serif;
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--olive); margin: 40px 0 20px; font-weight: 800;
     }
 
-    /* PROJECT CARDS */
-    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 0.5px solid var(--line); }
-    .project-card { background: var(--bg); padding: 40px 36px; cursor: pointer; transition: background 0.25s; position: relative; min-height: 240px; }
-    .project-card:hover { background: var(--bg2); }
+    /* ── PROJECT CARDS ── */
+    .projects-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-bottom: 16px;
+    }
+    .project-card {
+      background: var(--card); padding: 44px 40px;
+      cursor: pointer; transition: box-shadow 0.25s, transform 0.2s;
+      position: relative; min-height: 260px;
+      border-radius: 4px;
+      box-shadow: var(--shadow-sm);
+    }
+    .project-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
     .project-tag {
-      font-family: 'Inter', sans-serif;
+      font-family: 'SCDream', sans-serif;
       font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--muted); margin-bottom: 20px;
-      display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; gap: 10px; font-weight: 500;
     }
-    .project-tag::before { content: ''; display: inline-block; width: 20px; height: 0.5px; background: var(--olive); }
+    .project-tag::before { content: ''; display: inline-block; width: 18px; height: 1px; background: var(--olive); }
     .project-name {
-      font-family: 'Inter', sans-serif;
-      font-size: 20px; font-weight: 700; margin-bottom: 12px;
-      line-height: 1.2; letter-spacing: -0.03em;
+      font-family: 'PD', sans-serif;
+      font-size: 20px; font-weight: 600; margin-bottom: 12px;
+      line-height: 1.25; letter-spacing: -0.02em;
     }
-    .project-desc { font-size: 13px; color: #777; line-height: 1.75; margin-bottom: 28px; }
-    .project-year { font-family: 'Inter', sans-serif; font-size: 11px; color: #bbb; }
-    .project-arrow { position: absolute; bottom: 36px; right: 36px; font-size: 20px; color: #ccc; transition: transform 0.2s, color 0.2s; }
+    .project-desc {
+      font-family: 'PD', sans-serif;
+      font-size: 13px; color: #888; line-height: 1.8; margin-bottom: 32px; font-weight: 500;
+    }
+    .project-year { font-family: 'SCDream', sans-serif; font-size: 11px; color: #bbb; font-weight: 500; }
+    .project-arrow {
+      position: absolute; bottom: 40px; right: 40px;
+      font-size: 18px; color: #ccc; transition: transform 0.2s, color 0.2s;
+    }
     .project-card:hover .project-arrow { transform: translate(3px,-3px); color: var(--olive); }
-    .project-empty { background: var(--bg2); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; min-height: 240px; }
-    .project-empty p:first-child { font-family: 'Inter', sans-serif; font-size: 15px; color: #ccc; font-style: italic; }
-    .project-empty p:last-child { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #ccc; }
+    .project-empty {
+      background: var(--bg); display: flex;
+      align-items: center; justify-content: center; flex-direction: column;
+      gap: 8px; min-height: 260px; border-radius: 4px;
+      border: 1px dashed rgba(0,0,0,0.1);
+    }
+    .project-empty p:first-child { font-family: 'SCDream', sans-serif; font-size: 13px; color: #ccc; font-style: italic; font-weight: 500; }
+    .project-empty p:last-child { font-family: 'SCDream', sans-serif; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: #ccc; font-weight: 500; }
 
-    /* PROJECT LIST */
-    .project-list { border: 0.5px solid var(--line); }
-    .project-list-item { display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-bottom: 0.5px solid var(--line); transition: background 0.2s; cursor: pointer; }
+    /* ── PROJECT LIST ── */
+    .project-list { background: var(--card); border-radius: 4px; box-shadow: var(--shadow-sm); overflow: hidden; }
+    .project-list-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 28px; border-bottom: 1px solid var(--line);
+      transition: background 0.15s; cursor: pointer;
+    }
     .project-list-item:last-child { border-bottom: none; }
-    .project-list-item:hover { background: var(--bg2); }
+    .project-list-item:hover { background: #fafaf8; }
     .list-item-left { display: flex; align-items: center; gap: 20px; }
-    .list-num { font-family: 'Inter', sans-serif; font-size: 10px; color: #ccc; min-width: 24px; }
-    .list-name { font-size: 14px; font-weight: 400; }
+    .list-num { font-family: 'SCDream', sans-serif; font-size: 10px; color: #ccc; min-width: 24px; font-weight: 500; }
+    .list-name { font-family: 'PD', sans-serif; font-size: 14px; font-weight: 500; }
     .list-right { display: flex; align-items: center; gap: 24px; }
-    .list-tag { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #bbb; }
-    .list-year { font-family: 'Inter', sans-serif; font-size: 11px; color: #bbb; }
+    .list-tag { font-family: 'SCDream', sans-serif; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #bbb; font-weight: 500; }
+    .list-year { font-family: 'SCDream', sans-serif; font-size: 11px; color: #bbb; font-weight: 500; }
 
-    /* ABOUT */
+    /* ── ABOUT ── */
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
     .about-big-text {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(28px, 3.5vw, 44px); font-weight: 700;
-      line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 32px;
+      font-family: 'PD', sans-serif;
+      font-size: clamp(26px, 3.2vw, 42px); font-weight: 600;
+      line-height: 1.25; letter-spacing: -0.025em; margin-bottom: 36px;
     }
     .about-big-text span { color: var(--olive); }
-    .about-text { font-size: 14px; color: #555; line-height: 1.9; margin-bottom: 12px; }
-    .about-text-en { font-size: 12px; color: #aaa; line-height: 1.9; }
+    .about-text { font-family: 'PD', sans-serif; font-size: 14px; color: #555; line-height: 1.95; margin-bottom: 14px; font-weight: 500; }
+    .about-text-en { font-family: 'SCDream', sans-serif; font-size: 12px; color: #aaa; line-height: 1.9; font-weight: 500; }
 
-    .career-wrap { margin-top: 48px; }
-    .career-label { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #bbb; margin-bottom: 24px; font-weight: 600; }
-    .career-line { border-left: 0.5px solid var(--line); padding-left: 24px; display: flex; flex-direction: column; }
+    .career-wrap { margin-top: 52px; }
+    .career-label { font-family: 'SCDream', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #bbb; margin-bottom: 24px; font-weight: 800; }
+    .career-line { border-left: 1px solid var(--line); padding-left: 24px; display: flex; flex-direction: column; }
     .career-item { position: relative; padding-bottom: 28px; }
     .career-item:last-child { padding-bottom: 0; }
-    .career-dot { position: absolute; left: -28px; top: 5px; width: 7px; height: 7px; border-radius: 50%; background: var(--olive); }
-    .career-dot-gray { background: #d0cdc8; }
-    .career-period { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.08em; color: var(--olive); margin-bottom: 4px; font-weight: 500; }
+    .career-dot { position: absolute; left: -28.5px; top: 5px; width: 7px; height: 7px; border-radius: 50%; background: var(--olive); }
+    .career-dot-gray { background: #d4d2ce; }
+    .career-period { font-family: 'SCDream', sans-serif; font-size: 10px; letter-spacing: 0.08em; color: var(--olive); margin-bottom: 4px; font-weight: 500; }
     .career-period-gray { color: #bbb; }
-    .career-title { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
-    .career-sub { font-size: 12px; color: #888; font-weight: 300; }
+    .career-title { font-family: 'PD', sans-serif; font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .career-sub { font-family: 'PD', sans-serif; font-size: 12px; color: #999; font-weight: 500; }
 
-    .skills-section-label { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #bbb; margin-bottom: 18px; font-weight: 600; }
+    .skills-section-label { font-family: 'SCDream', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #bbb; margin-bottom: 18px; font-weight: 800; }
     .skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
     .skill-chip {
-      font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500;
+      font-family: 'SCDream', sans-serif; font-size: 11px; font-weight: 500;
       color: var(--text); padding: 10px 18px;
-      background: var(--bg2); border-radius: 4px; border: 0.5px solid var(--line);
+      background: var(--card); border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
     }
-    .cert-list { border-top: 0.5px solid var(--line); }
-    .cert-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 0.5px solid var(--line); }
-    .cert-name { font-size: 13px; font-weight: 400; }
-    .cert-type { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #bbb; }
+    .cert-list { border-top: 1px solid var(--line); }
+    .cert-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .cert-name { font-family: 'PD', sans-serif; font-size: 13px; font-weight: 500; }
+    .cert-type { font-family: 'SCDream', sans-serif; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #bbb; font-weight: 500; }
 
-    /* CONTACT */
-    .contact { padding: 120px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; border-bottom: 0.5px solid var(--line); }
-    .contact-big { font-family: 'Inter', sans-serif; font-size: clamp(48px, 6.5vw, 90px); font-weight: 800; line-height: 1.0; letter-spacing: -0.04em; }
-    .contact-big span { color: var(--olive); }
-    .contact-eyebrow { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #bbb; margin-bottom: 20px; font-weight: 600; }
-    .contact-desc { font-size: 14px; color: #666; line-height: 1.85; margin-bottom: 36px; }
+    /* ── CONTACT ── */
+    .contact {
+      padding: 96px 56px;
+      border-bottom: 1px solid var(--line);
+      max-width: 640px;
+    }
+    .contact-eyebrow { font-family: 'SCDream', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #bbb; margin-bottom: 20px; font-weight: 800; }
+    .contact-desc { font-family: 'PD', sans-serif; font-size: 14px; color: #666; line-height: 1.9; margin-bottom: 40px; font-weight: 500; }
     .contact-links { display: flex; gap: 10px; flex-wrap: wrap; }
-    .contact-link { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; padding: 13px 28px; background: var(--text); border-radius: 100px; cursor: pointer; font-weight: 500; transition: all 0.2s; }
+    .contact-link {
+      font-family: 'SCDream', sans-serif; font-size: 11px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #fff; padding: 14px 32px;
+      background: var(--text); border-radius: 100px; cursor: pointer;
+      font-weight: 500; transition: all 0.2s;
+    }
     .contact-link:hover { background: var(--olive); }
-    .contact-link.outline { background: transparent; color: var(--text); border: 0.5px solid rgba(0,0,0,0.2); }
+    .contact-link.outline { background: transparent; color: var(--text); border: 1px solid rgba(0,0,0,0.15); }
     .contact-link.outline:hover { background: var(--olive); color: #fff; border-color: var(--olive); }
 
-    footer { padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; border-top: 0.5px solid var(--line); }
-    .footer-copy { font-family: 'Inter', sans-serif; font-size: 11px; color: #bbb; }
-    .footer-name { font-family: 'Inter', sans-serif; font-size: 11px; color: #bbb; }
+    footer {
+      padding: 28px 56px; display: flex; justify-content: space-between; align-items: center;
+      background: var(--card); border-top: 1px solid var(--line);
+    }
+    .footer-copy { font-family: 'SCDream', sans-serif; font-size: 11px; color: #bbb; font-weight: 500; }
+    .footer-name { font-family: 'PD', sans-serif; font-size: 11px; color: #bbb; font-weight: 500; }
 
-    /* DETAIL */
-    .detail-hero { padding: 64px 48px 0; border-bottom: 0.5px solid var(--line); }
-    .back-btn { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 56px; transition: color 0.2s; }
+    /* ── DETAIL ── */
+    .detail-hero { padding: 72px 56px 0; border-bottom: 1px solid var(--line); background: var(--card); }
+    .back-btn {
+      font-family: 'SCDream', sans-serif; font-size: 10px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted); cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-bottom: 56px; transition: color 0.2s; font-weight: 500;
+    }
     .back-btn:hover { color: var(--olive); }
-    .detail-meta { display: flex; gap: 48px; margin-bottom: 56px; padding-bottom: 48px; border-bottom: 0.5px solid var(--line); flex-wrap: wrap; }
-    .detail-meta-label { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #bbb; margin-bottom: 6px; }
-    .detail-meta-value { font-size: 13px; color: #444; font-weight: 400; }
-    .detail-title-area { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; padding-bottom: 68px; }
-    .detail-title { font-family: 'Inter', sans-serif; font-size: clamp(36px, 5vw, 68px); font-weight: 800; line-height: 1.05; letter-spacing: -0.04em; }
-    .detail-intro { font-size: 16px; color: #555; line-height: 1.9; font-weight: 300; }
+    .detail-meta { display: flex; gap: 48px; margin-bottom: 56px; padding-bottom: 48px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+    .detail-meta-label { font-family: 'SCDream', sans-serif; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #bbb; margin-bottom: 6px; font-weight: 800; }
+    .detail-meta-value { font-family: 'PD', sans-serif; font-size: 13px; color: #444; font-weight: 500; }
+    .detail-title-area { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; padding-bottom: 72px; }
+    .detail-title { font-family: 'PD', sans-serif; font-size: clamp(36px, 5vw, 68px); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em; }
+    .detail-intro { font-family: 'PD', sans-serif; font-size: 15px; color: #555; line-height: 1.95; font-weight: 500; }
 
-    .detail-section { padding: 68px 48px; border-bottom: 0.5px solid var(--line); }
-    .detail-section-title { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #bbb; margin-bottom: 32px; font-weight: 600; }
+    .detail-section { padding: 72px 56px; border-bottom: 1px solid var(--line); }
+    .detail-section-title { font-family: 'SCDream', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #bbb; margin-bottom: 32px; font-weight: 800; }
 
-    .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); margin-bottom: 1px; }
-    .img-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--line); margin-bottom: 1px; }
-    .img-placeholder { aspect-ratio: 4/3; position: relative; overflow: hidden; background: var(--bg2); }
+    .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+    .img-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+    .img-placeholder { aspect-ratio: 4/3; position: relative; overflow: hidden; background: #EBEBEB; border-radius: 2px; }
     .img-placeholder img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .img-wide { aspect-ratio: 16/7; position: relative; overflow: hidden; background: var(--bg2); margin-bottom: 1px; }
+    .img-wide { aspect-ratio: 16/7; position: relative; overflow: hidden; background: #EBEBEB; margin-bottom: 8px; border-radius: 2px; }
     .img-wide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .img-full { width: 100%; overflow: hidden; background: var(--bg2); }
+    .img-full { width: 100%; overflow: hidden; background: #EBEBEB; border-radius: 2px; }
     .img-full img { width: 100%; height: auto; display: block; }
 
     .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-    .concept-label { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #bbb; margin-bottom: 16px; font-weight: 600; }
-    .concept-title { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 700; margin-bottom: 20px; line-height: 1.25; letter-spacing: -0.03em; }
-    .concept-text { font-size: 14px; color: #555; line-height: 1.9; }
+    .concept-label { font-family: 'SCDream', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #bbb; margin-bottom: 16px; font-weight: 800; }
+    .concept-title { font-family: 'PD', sans-serif; font-size: 28px; font-weight: 600; margin-bottom: 20px; line-height: 1.25; letter-spacing: -0.025em; }
+    .concept-text { font-family: 'PD', sans-serif; font-size: 14px; color: #555; line-height: 1.95; font-weight: 500; }
     .concept-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
-    .concept-tag { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--olive); padding: 6px 14px; border: 0.5px solid rgba(107,112,73,0.35); border-radius: 100px; font-weight: 500; }
+    .concept-tag {
+      font-family: 'SCDream', sans-serif; font-size: 10px; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--olive); padding: 6px 14px;
+      border: 1px solid rgba(107,112,73,0.3); border-radius: 100px;
+      font-weight: 500; background: var(--olive-light);
+    }
 
     .role-list { list-style: none; margin-top: 8px; }
-    .role-list li { font-size: 13px; color: #555; padding: 12px 0; border-bottom: 0.5px solid var(--line); display: flex; align-items: center; gap: 14px; }
+    .role-list li {
+      font-family: 'PD', sans-serif;
+      font-size: 13px; color: #555; padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; gap: 14px; font-weight: 500;
+    }
     .role-list li::before { content: ''; display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: var(--olive); flex-shrink: 0; }
 
     .space-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
-    .space-table th { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; text-align: left; padding: 10px 0; border-bottom: 0.5px solid var(--line); font-weight: 500; }
-    .space-table td { font-size: 13px; color: #555; padding: 13px 0; border-bottom: 0.5px solid rgba(0,0,0,0.05); }
-    .space-table td:first-child { color: var(--text); font-weight: 500; }
+    .space-table th { font-family: 'SCDream', sans-serif; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #bbb; text-align: left; padding: 10px 0; border-bottom: 1px solid var(--line); font-weight: 800; }
+    .space-table td { font-family: 'PD', sans-serif; font-size: 13px; color: #555; padding: 13px 0; border-bottom: 1px solid rgba(0,0,0,0.04); font-weight: 500; }
+    .space-table td:first-child { color: var(--text); font-weight: 600; }
 
-    .project-nav { padding: 48px; display: flex; justify-content: space-between; align-items: center; }
-    .proj-nav-btn { font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); cursor: pointer; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
+    .project-nav { padding: 52px 56px; display: flex; justify-content: space-between; align-items: center; background: var(--card); }
+    .proj-nav-btn { font-family: 'SCDream', sans-serif; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); cursor: pointer; display: flex; align-items: center; gap: 8px; transition: color 0.2s; font-weight: 500; }
     .proj-nav-btn:hover { color: var(--olive); }
 
     @media (max-width: 768px) {
@@ -269,28 +360,28 @@
       .hero-year { right: 24px; }
       .hero-body { grid-template-columns: 1fr; gap: 36px; padding-bottom: 56px; }
       .hero-title { font-size: 72px; }
-      .section { padding: 56px 24px; }
+      .section { padding: 64px 24px; }
       .projects-grid { grid-template-columns: 1fr; }
       .about-grid { grid-template-columns: 1fr; gap: 56px; }
-      .contact { padding: 80px 24px; grid-template-columns: 1fr; gap: 48px; }
+      .contact { padding: 80px 24px; }
       footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
-      .detail-hero { padding: 32px 24px 0; }
+      .detail-hero { padding: 36px 24px 0; }
       .detail-title-area { grid-template-columns: 1fr; gap: 32px; }
-      .detail-section { padding: 40px 24px; }
+      .detail-section { padding: 48px 24px; }
       .img-grid-2 { grid-template-columns: 1fr; }
       .img-grid-3 { grid-template-columns: 1fr; }
       .concept-grid { grid-template-columns: 1fr; gap: 48px; }
-      .project-nav { padding: 32px 24px; }
+      .project-nav { padding: 36px 24px; }
       .detail-meta { gap: 24px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ===== MAIN PAGE ===== -->
+<!-- ===== MAIN ===== -->
 <div id="page-main" class="page active">
   <nav>
-    <span class="logo" onclick="showPage('main')">Choi Inae</span>
+    <span class="logo" onclick="showPage('main')">안착</span>
     <ul class="nav-links">
       <li><a onclick="scrollToSection('work')">Work</a></li>
       <li><a onclick="scrollToSection('about')">About</a></li>
@@ -299,13 +390,11 @@
   </nav>
 
   <section class="hero">
-    <div class="hero-watermark">INAE</div>
+    <div class="hero-watermark">ANCHAK</div>
     <span class="hero-eyebrow">Designer · Seoul</span>
     <span class="hero-year">© 2026</span>
     <div class="hero-body">
-      <div>
-        <h1 class="hero-title">All I've<br>Been</h1>
-      </div>
+      <div><h1 class="hero-title">ALL I'VE<br>BEEN</h1></div>
       <div class="hero-right">
         <p class="hero-desc">공간의 정체성과 시간을 잇는 디자인.<br>장소가 가진 고유한 결을 읽고,<br>그것을 공간의 언어로 번역합니다.</p>
         <div class="hero-tags">
@@ -315,6 +404,7 @@
         </div>
       </div>
     </div>
+    <div class="hero-divider"></div>
   </section>
 
   <!-- WORK -->
@@ -330,7 +420,7 @@
 
     <div id="tab-commercial">
       <p class="sub-label">공간형</p>
-      <div class="projects-grid" style="margin-bottom:1px;">
+      <div class="projects-grid">
         <div class="project-card" onclick="showPage('project-jemulpo')">
           <p class="project-tag">Educational Space · AI Platform</p>
           <h3 class="project-name">제물포<br>AI 융합교육센터</h3>
@@ -355,8 +445,8 @@
         <div class="project-empty"><p>More coming</p><p>In progress</p></div>
       </div>
 
-      <p class="sub-label" style="margin-top:40px;">전시형</p>
-      <div class="projects-grid" style="margin-bottom:52px;">
+      <p class="sub-label" style="margin-top:48px;">전시형</p>
+      <div class="projects-grid" style="margin-bottom:56px;">
         <div class="project-card">
           <p class="project-tag">Exhibition · Brand</p>
           <h3 class="project-name">대원미디어그룹<br>AGF 2025</h3>
@@ -411,7 +501,7 @@
   </section>
 
   <!-- ABOUT -->
-  <section class="section" id="about">
+  <section class="section" id="about" style="background:var(--card);">
     <div class="section-header">
       <h2 class="section-title">About</h2>
       <span class="section-num">02</span>
@@ -446,7 +536,7 @@
           </div>
         </div>
       </div>
-      <div class="skills-block">
+      <div>
         <p class="skills-section-label">Areas of Practice</p>
         <div class="skill-chips">
           <span class="skill-chip">Space Design</span>
@@ -455,7 +545,7 @@
           <span class="skill-chip">Concept Development</span>
           <span class="skill-chip">Construction Mgmt</span>
         </div>
-        <p class="skills-section-label" style="margin-top:40px;">Certificates</p>
+        <p class="skills-section-label" style="margin-top:44px;">Certificates</p>
         <div class="cert-list">
           <div class="cert-item"><span class="cert-name">실내건축기사</span><span class="cert-type">국가기술자격</span></div>
           <div class="cert-item"><span class="cert-name">Photoshop 1급</span><span class="cert-type">그래픽</span></div>
@@ -468,32 +558,26 @@
 
   <!-- CONTACT -->
   <section class="contact" id="contact">
-    <div>
-      <p class="contact-eyebrow">Let's work together</p>
-      <h2 class="contact-big">함께<br>만들어갈<br><span>공간</span>이<br>있나요?</h2>
-    </div>
-    <div>
-      <p class="contact-desc">기획부터 시공까지, 공간이 담아야 할 이야기를 함께 만들어가고 싶습니다.</p>
-      <div class="contact-links">
-        <a href="mailto:your@email.com" class="contact-link">Email</a>
-        <a href="https://instagram.com/yourhandle" target="_blank" class="contact-link outline">Instagram</a>
-      </div>
+    <p class="contact-eyebrow">Let's work together</p>
+    <p class="contact-desc">기획부터 시공까지, 공간이 담아야 할 이야기를 함께 만들어가고 싶습니다.</p>
+    <div class="contact-links">
+      <a href="mailto:your@email.com" class="contact-link">Email</a>
+      <a href="https://instagram.com/yourhandle" target="_blank" class="contact-link outline">Instagram</a>
     </div>
   </section>
 
   <footer>
-    <span class="footer-copy">© 2026 Choi Inae. All rights reserved.</span>
-    <span class="footer-name">최인애 / Designer</span>
+    <span class="footer-copy">© 2026 안착. All rights reserved.</span>
+    <span class="footer-name">안착 / Designer</span>
   </footer>
 </div>
 
-<!-- ===== PROJECT: 제물포 AI 융합교육센터 ===== -->
+<!-- ===== 제물포 ===== -->
 <div id="page-project-jemulpo" class="page">
   <nav>
-    <span class="logo" onclick="showPage('main')">Choi Inae</span>
+    <span class="logo" onclick="showPage('main')">안착</span>
     <ul class="nav-links"><li><a onclick="showPage('main')">← All Projects</a></li></ul>
   </nav>
-
   <div class="detail-hero">
     <div class="back-btn" onclick="showPage('main')">← All Projects</div>
     <div class="detail-meta">
@@ -506,28 +590,6 @@
     <div class="detail-title-area">
       <div><h1 class="detail-title">제물포<br>AI 융합교육센터<br>AI.LAND</h1></div>
       <div><p class="detail-intro">인천 내항 8부두 곡물창고를 재생한 약 530평 규모의 AI 미래교육 플랫폼. L.LAND(러닝존)와 T.LAND(테크존)로 구성된 온·오프라인 통합 교육 생태계를 기획하고 설계했습니다.</p></div>
-    </div>
-  </div>
-
-  <div class="detail-section">
-    <p class="detail-section-title">Completed Space</p>
-    <div class="img-wide"><img src="AI-00051.jpg" alt="T.LAND 전경" /></div>
-    <div class="img-grid-2">
-      <div class="img-placeholder"><img src="AI-00078.jpg" alt="T.LAND" /></div>
-      <div class="img-placeholder"><img src="AI-00092.jpg" alt="트랙존" /></div>
-    </div>
-    <div class="img-grid-3">
-      <div class="img-placeholder"><img src="AI-00125.jpg" alt="클래스룸" /></div>
-      <div class="img-placeholder"><img src="AI-00166.jpg" alt="L.LAND 로비" /></div>
-      <div class="img-placeholder"><img src="AI-00171.jpg" alt="L.LAND" /></div>
-    </div>
-    <div class="img-grid-2">
-      <div class="img-placeholder"><img src="AI-00177.jpg" alt="복도" /></div>
-      <div class="img-placeholder"><img src="AI-00179.jpg" alt="강의실" /></div>
-    </div>
-    <div class="img-grid-2">
-      <div class="img-placeholder"><img src="AI-00207.jpg" alt="디테일" /></div>
-      <div class="img-placeholder"><img src="AI-00218.jpg" alt="디테일" /></div>
     </div>
   </div>
 
@@ -560,6 +622,28 @@
           <tr><td>공용</td><td>로비 · 복도 · 운영사무실</td><td>143㎡</td></tr>
         </table>
       </div>
+    </div>
+  </div>
+
+  <div class="detail-section">
+    <p class="detail-section-title">Completed Space</p>
+    <div class="img-wide"><img src="AI-00051.jpg" alt="T.LAND 전경" /></div>
+    <div class="img-grid-2">
+      <div class="img-placeholder"><img src="AI-00078.jpg" alt="T.LAND" /></div>
+      <div class="img-placeholder"><img src="AI-00092.jpg" alt="트랙존" /></div>
+    </div>
+    <div class="img-grid-3">
+      <div class="img-placeholder"><img src="AI-00125.jpg" alt="클래스룸" /></div>
+      <div class="img-placeholder"><img src="AI-00166.jpg" alt="L.LAND 로비" /></div>
+      <div class="img-placeholder"><img src="AI-00171.jpg" alt="L.LAND" /></div>
+    </div>
+    <div class="img-grid-2">
+      <div class="img-placeholder"><img src="AI-00177.jpg" alt="복도" /></div>
+      <div class="img-placeholder"><img src="AI-00179.jpg" alt="강의실" /></div>
+    </div>
+    <div class="img-grid-2">
+      <div class="img-placeholder"><img src="AI-00207.jpg" alt="디테일" /></div>
+      <div class="img-placeholder"><img src="AI-00218.jpg" alt="디테일" /></div>
     </div>
   </div>
 
@@ -599,21 +683,18 @@
     <div class="proj-nav-btn" onclick="showPage('main')">← All Projects</div>
     <div class="proj-nav-btn" onclick="showPage('project-sunchang')">순창고등학교 →</div>
   </div>
-
   <footer>
-    <span class="footer-copy">© 2026 Choi Inae. All rights reserved.</span>
-    <span class="footer-name">최인애 / Designer</span>
+    <span class="footer-copy">© 2026 안착. All rights reserved.</span>
+    <span class="footer-name">안착 / Designer</span>
   </footer>
 </div>
 
-
-<!-- ===== PROJECT: 순창고등학교 미래교실 ===== -->
+<!-- ===== 순창고 ===== -->
 <div id="page-project-sunchang" class="page">
   <nav>
-    <span class="logo" onclick="showPage('main')">Choi Inae</span>
+    <span class="logo" onclick="showPage('main')">안착</span>
     <ul class="nav-links"><li><a onclick="showPage('main')">← All Projects</a></li></ul>
   </nav>
-
   <div class="detail-hero">
     <div class="back-btn" onclick="showPage('main')">← All Projects</div>
     <div class="detail-meta">
@@ -624,38 +705,18 @@
       <div><p class="detail-meta-label">Program</p><p class="detail-meta-value">고교학점제 학교공간 혁신</p></div>
     </div>
     <div class="detail-title-area">
-      <div>
-        <h1 class="detail-title">순창고등학교<br>미래교실</h1>
-      </div>
-      <div>
-        <p class="detail-intro">고교학점제 전면 시행에 앞서 학생·교사·학부모의 사용자 참여 설계를 통해 완성한 학교공간 혁신 프로젝트. 순창의 지역 정체성과 학생들의 꿈을 담는다는 컨셉으로, 1층 중앙현관·홈베이스부터 2층 학습공간, 3층 열람공간까지 통합적으로 기획했습니다.</p>
-      </div>
+      <div><h1 class="detail-title">순창고등학교<br>미래교실</h1></div>
+      <div><p class="detail-intro">고교학점제 전면 시행에 앞서 학생·교사·학부모의 사용자 참여 설계를 통해 완성한 학교공간 혁신 프로젝트. 순창의 지역 정체성과 학생들의 꿈을 담는다는 컨셉으로, 1층부터 3층까지 통합적으로 기획했습니다.</p></div>
     </div>
   </div>
 
-  <!-- 1F 완공사진 -->
-  <div class="detail-section">
-    <p class="detail-section-title">Completed Space — 1F 중앙현관 · 홈베이스 소동</p>
-    <div class="img-wide"><img src="사진4.jpg" alt="홈베이스 전경" /></div>
-    <div class="img-grid-2">
-      <div class="img-placeholder"><img src="사진1.jpg" alt="1F 중앙현관" /></div>
-      <div class="img-placeholder"><img src="사진2.jpg" alt="1F 역사전시" /></div>
-    </div>
-    <div class="img-grid-3">
-      <div class="img-placeholder"><img src="사진3.jpg" alt="홈베이스 학생마루" /></div>
-      <div class="img-placeholder"><img src="사진5.jpg" alt="새빛마루 학습공간" /></div>
-      <div class="img-placeholder"><img src="사진4.jpg" alt="홈베이스" /></div>
-    </div>
-  </div>
-
-  <!-- 컨셉 + 역할 -->
   <div class="detail-section">
     <div class="concept-grid">
       <div>
         <p class="concept-label">Concept</p>
         <h2 class="concept-title">순창을 담아<br>꿈을 담그다</h2>
         <p class="concept-text">순창의 발효문화 '담그다'에서 출발한 공간 컨셉. 지식과 경험이라는 재료를 버무려 아이들의 꿈을 키우는 장소를 만든다는 의미를 공간 언어로 번역했습니다.</p>
-        <p class="concept-text" style="margin-top:16px;">학습공간은 '질문을 담그다(문동)', 홈베이스는 '소통을 담그다(소동)'라는 이름으로 각 공간에 정체성을 부여했습니다. 5주간의 사용자 참여 설계를 통해 학생들의 필요를 직접 공간에 반영했습니다.</p>
+        <p class="concept-text" style="margin-top:16px;">학습공간은 '질문을 담그다(문동)', 홈베이스는 '소통을 담그다(소동)'라는 이름으로 각 공간에 정체성을 부여했습니다. 5주간의 사용자 참여 설계를 통해 학생들의 필요를 직접 반영했습니다.</p>
         <div class="concept-tags">
           <span class="concept-tag">고교학점제</span>
           <span class="concept-tag">사용자 참여 설계</span>
@@ -685,7 +746,20 @@
     </div>
   </div>
 
-  <!-- 1F 투시도 -->
+  <div class="detail-section">
+    <p class="detail-section-title">Completed Space — 1F 중앙현관 · 홈베이스 소동</p>
+    <div class="img-wide"><img src="사진4.jpg" alt="홈베이스 전경" /></div>
+    <div class="img-grid-2">
+      <div class="img-placeholder"><img src="사진1.jpg" alt="1F 중앙현관" /></div>
+      <div class="img-placeholder"><img src="사진2.jpg" alt="1F 역사전시" /></div>
+    </div>
+    <div class="img-grid-3">
+      <div class="img-placeholder"><img src="사진3.jpg" alt="홈베이스 학생마루" /></div>
+      <div class="img-placeholder"><img src="사진5.jpg" alt="새빛마루 학습공간" /></div>
+      <div class="img-placeholder"><img src="사진4.jpg" alt="홈베이스" /></div>
+    </div>
+  </div>
+
   <div class="detail-section">
     <p class="detail-section-title">Design Process — 1F 투시도</p>
     <div class="img-wide"><img src="투시도1.png" alt="1F 중앙현관 History Wall" /></div>
@@ -699,34 +773,31 @@
     </div>
   </div>
 
-  <!-- 2F 이음마루 -->
   <div class="detail-section">
     <p class="detail-section-title">Completed Space — 2F 이음마루 · 문동</p>
     <div class="img-wide"><img src="사진6.jpg" alt="2F 이음마루 전경" /></div>
-    <div class="img-placeholder" style="aspect-ratio:16/9; margin-bottom:1px;"><img src="사진7.jpg" alt="2F 이음마루 앵글" /></div>
+    <div class="img-placeholder" style="aspect-ratio:16/9; margin-bottom:8px;"><img src="사진7.jpg" alt="2F 이음마루 앵글" /></div>
     <p class="detail-section-title" style="margin-top:52px;">Design Process — 2F 투시도</p>
     <div class="img-wide"><img src="투시도6.png" alt="2F 문동 클래스룸 투시도" /></div>
-    <div class="img-placeholder" style="aspect-ratio:16/9; margin-bottom:1px;"><img src="투시도7.png" alt="2F 소동 투시도" /></div>
+    <div class="img-placeholder" style="aspect-ratio:16/9; margin-bottom:8px;"><img src="투시도7.png" alt="2F 소동 투시도" /></div>
   </div>
 
-  <!-- 3F 열람마루 -->
   <div class="detail-section">
     <p class="detail-section-title">Completed Space — 3F 열람마루 · 홈베이스</p>
     <div class="img-wide"><img src="사진8.jpg" alt="3F 열람마루 아치 벽" /></div>
-    <div class="img-placeholder" style="aspect-ratio:16/9; margin-bottom:1px;"><img src="사진9.jpg" alt="3F 열람마루 전경" /></div>
+    <div class="img-placeholder" style="aspect-ratio:16/9; margin-bottom:8px;"><img src="사진9.jpg" alt="3F 열람마루 전경" /></div>
     <p class="detail-section-title" style="margin-top:52px;">Design Process — 3F 투시도</p>
     <div class="img-wide"><img src="투시도8.png" alt="3F 열람마루 투시도" /></div>
-    <div class="img-placeholder" style="aspect-ratio:16/9; margin-bottom:1px;"><img src="투시도9.png" alt="3F 홈베이스 투시도" /></div>
+    <div class="img-placeholder" style="aspect-ratio:16/9; margin-bottom:8px;"><img src="투시도9.png" alt="3F 홈베이스 투시도" /></div>
   </div>
 
   <div class="project-nav">
     <div class="proj-nav-btn" onclick="showPage('project-jemulpo')">← 제물포 AI 융합교육센터</div>
     <div class="proj-nav-btn" onclick="showPage('main')">All Projects →</div>
   </div>
-
   <footer>
-    <span class="footer-copy">© 2026 Choi Inae. All rights reserved.</span>
-    <span class="footer-name">최인애 / Designer</span>
+    <span class="footer-copy">© 2026 안착. All rights reserved.</span>
+    <span class="footer-name">안착 / Designer</span>
   </footer>
 </div>
 
